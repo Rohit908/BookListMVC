@@ -1,0 +1,56 @@
+﻿@model BookListMVC.Models.Book
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<br />
+<h2>@(Model.Id!=0?"Edit":"Create") Book</h2>
+<br />
+
+<div class="border container p-3">
+
+    <form method="post">
+        @if(Model.Id!=0)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <div class="text danger" asp-validation-summary="ModelOnly"></div>
+        <div class="row p-2">
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input name="Name" value="@Model.Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-2">
+                <label asp-for="Author"></label>
+            </div>
+            <div class="col-6">
+                <input name="Author" value="@Model.Author" class="form-control" />
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-2">
+                <label asp-for="ISBN"></label>
+            </div>
+            <div class="col-6">
+                <input name="ISBN" value="@Model.ISBN" class="form-control" />
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-3 offset-2">
+                <input type="submit" value="@(Model.Id!=0?"Update":"Create")" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

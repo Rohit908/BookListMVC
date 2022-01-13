@@ -1,0 +1,45 @@
+﻿@model List<Book>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container row p-0 m-0">
+    <div class="col-6">
+        <h2>Book List</h2>
+    </div>
+    <div class="col-3 offset-3">
+        <a asp-action="Upsert" asp-controller="Book" class="btn btn-info form-control text-white">
+            Add New Book
+        </a>
+    </div>  
+    <div class="col-12 border p-4">
+        <table class="table table-striped bordered">
+    <thead>
+        <tr class="bg-info">
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="30%">@obj.Name</td>
+                <td width="20%">@obj.Author</td>
+                <td width="20%">@obj.ISBN</td>
+                <td width="20%">
+                    <a asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-sm btn-success">Update</a>
+                    <a asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/bookList.js"></script>
+}
